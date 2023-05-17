@@ -1,6 +1,4 @@
 from iterator import floop
-import count_analysis1
-import count_analysis2
 from renamer import rename
 
 # setup variables
