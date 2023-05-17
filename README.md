@@ -1,6 +1,6 @@
-## AYPA POWER GIS - PARCEL UPDATER
+## PARCEL UPDATER
 
-every quarter or so the Aypa GIS team is provided updates via ftps from lightbox data services. we use this provided data to update our parcel service. the method we have derived to be able to work with such a large amount of data and have the map service perform fairly well is to compile all counties into their respective states. ~~then those states are put together in a map 'view' to create the service.~~ the first part of this is to get all the counties provided (usually well over 3,000) compiled to the state level. this script accomplishes that task. the below details provide information about each component of the script and also instructions for how to update this dataset.
+every quarter or so the parcel service needs to be updated and data is provided via ftps from the data provider. the bulk of the work is to get all the counties provided (over 3,000) compiled to the state level and this script accomplishes that task. the below details provide information about each component of the script and also instructions for how to update this dataset.
 
 __main.py__
     
@@ -16,7 +16,7 @@ after much testing, this function is now a simple loop to iterate through the `p
 
 __counter.py__
 
-the _counter.py_ has two functions within the file. the `post_work` function runs a count for each state featureclass after they have been compiled in the `output_workspace` and appends that number to the `count_dict` for the appropriate state key in the 1 index position. the _counter.py_ file also contains the `write` function which writes all the dictionaries to file. when the the `post_work` function runs to get the post count for `count_dict`, it will add a second number to the list for each state key, the first ([0] index) will be the pre process count and the second ([1] index) will be the post process count.
+the _counter.py_ has two functions within the file. the `post_work` function runs a count for each state featureclass after they have been compiled in the `output_workspace` and appends that number to the `count_dict` for the appropriate state key in the 1 index position. the _counter.py_ file also contains the `write_dict` function which writes the dictionaries to file. when the the `post_work` function runs to get the post count for `count_dict`, it will add a second number to the list for each state key, the first ([0] index) will be the pre process count and the second ([1] index) will be the post process count.
 
 __states.py__
     
@@ -43,9 +43,17 @@ for fc in fc_list:
     
     __NOTE:__ copying this data to the SDE might be best performed during off peak hours due to some strain it will have on the RDS.
 
-4. Now, STOP the parcels service using ArcGIS Server Manager, then run [kill_schema_locks.sql](https://github.com/aypapower/GIS/blob/dev/sql/kill_schema_locks.sql) within [PGAdmin](https://www.pgadmin.org/) to remove schema lock connections on the _parcels.sde_ production database. 
+4. Now, STOP the parcels service using ArcGIS Server Manager, then run the sql code below within [PGAdmin](https://www.pgadmin.org/) to remove schema lock connections on the _parcels.sde_ production database. 
     
     __NOTE:__ this should also be performed during offpeak hours in order to avoid user disruption.
+    
+```
+DELETE FROM egdb.sde.SDE_process_information;
+DELETE FROM egdb.sde.SDE_layer_locks;
+DELETE FROM egdb.sde.SDE_state_locks;
+DELETE FROM egdb.sde.SDE_table_locks;
+DELETE FROM egdb.sde.SDE_object_locks;
+```
 
 5. Once the production parcel service has been stopped, RENAME all production state featureclasses to, for example, an underscore 2 ('ALASKA_2') and rename your imported new updated state featureclasses to what the production featureclasses were named (ie. without an underscore 1; see #2 above and you can use the provided code above or similar).
 
