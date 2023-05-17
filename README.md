@@ -61,6 +61,6 @@ DELETE FROM egdb.sde.SDE_object_locks;
 
 7. ~~Register the view with the geodatabase by finding it in the ArcGIS Pro catalog and right-clicking to select 'Register with Geodatabase'. The view_id should be used as the unique objectid.~~
 
-__NOTE:__ As of early 2023 (January parcel update), steps 6 & 7 above have been excluded from this workflow due to issues with the national parcel database view. Now, a __Merge__ geoprocess is run on all states to create one national parcel featureclass, `parcels.sde.lightbox_us_all`.
+    __NOTE:__ As of early 2023 (January parcel update), steps 6 & 7 above have been excluded from this workflow due to issues with the national parcel database view. Now, a __Merge__ geoprocess is run on all states to create one national parcel featureclass, `parcels.sde.lightbox_us_all`.
 
 8. Restart the parcels service and check that it is working properly. If not, open up the parcels service map document, double-click the layer and make sure it is sourced to the view in the _parcels.sde_ database, then overwrite publish the parcel service.
