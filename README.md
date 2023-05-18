@@ -63,7 +63,7 @@ DELETE FROM egdb.sde.SDE_object_locks;
 
 5. Once the production parcel service has been stopped, RENAME all production state featureclasses to, for example, an underscore 2 ('ALASKA_2') and rename your imported new updated state featureclasses to what the production featureclasses were named (ie. without an underscore 1; see #2 above and you can use the provided code above or similar).
 
-6. ~~Time to run the SQL to create the national parcel view, parcels.sde.lightbox_us_view. The SQL to do this is located [here](https://github.com/aypapower/GIS/blob/dev/sql/archive/lightbox_us_view_v4.sql). Open PGAdmin to run the SQL, or if you prefer using ArcGIS Pro to create the view, you should be able to do it there.~~
+6. ~~Time to run the SQL to create the national parcel view, parcels.sde.lightbox_us_view. Open PGAdmin to run the SQL, or if you prefer using ArcGIS Pro to create the view, you should be able to do it there.~~
 
 7. ~~Register the view with the geodatabase by finding it in the ArcGIS Pro catalog and right-clicking to select 'Register with Geodatabase'. The view_id should be used as the unique objectid.~~
 
