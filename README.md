@@ -18,7 +18,7 @@ __counter.py__
 
 the _counter.py_ has two functions within the file. the `post_work` function runs a count for each state featureclass after they have been compiled in the `output_workspace` and appends that number to the `count_dict` for the appropriate state key in the 1 index position. the _counter.py_ file also contains the `write_dict` function which writes the dictionaries to file. when the the `post_work` function runs to get the post count for `count_dict`, it will add a second number to the list for each state key, the first ([0] index) will be the pre process count and the second ([1] index) will be the post process count.
     
-    - the pre and post counts are meant to be a simple comparison of pre and post processing results to see if any records have been lost during processing.
+    * the pre and post counts are meant to be a simple comparison of pre and post processing results to see if any records have been lost during processing
 
 __states.py__
     
