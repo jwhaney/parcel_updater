@@ -31,7 +31,7 @@ simple function to batch rename featureclasses before and after importing the up
 
 ### FULL PARCEL UPDATE PROCESS INSTRUCTIONS
 
-1. Run the _iterator.py_ script by opening _main.py_ and editing the required full path variables to point to the latest parcel update directory (`data_dir`) and your project working directory (`output_workspace`). These variables should be a path string with double backslashes (ie. 'G:\\Path\\TO\\YOUR\\DATA'). Running the _iterator.py_ will call all necessary functions for the script to complete so there is no further input required.
+1. Run the _iterator.py_ script by opening _main.py_ and editing the required full path variables to point to the latest parcel update directory (`data_dir`) and your project working directory (`output_workspace`). These variables should be a path string with double backslashes (ie. `G:\\Path\\TO\\YOUR\\DATA`). Running the _iterator.py_ will call all necessary functions for the script to complete so there is no further input required.
 
 2. It will take some time, but when completed your `output_workspace` will have a featureclass for each state, plus the District of Columbia. Prepare the states in your working directory to be copied to the enterprise geodatabase by renaming each one to something different than the production state featureclasses (ie. just add an underscore 1 to the end - 'ALASKA_1'). A short script looping through `output_workspace` should make this easy, something like this:
 
