@@ -25,7 +25,7 @@ __states.py__
 used for reference in _iterator.py_. this is a python dictionary to retrieve state abbreviations or full state names, depending on which is needed.
 
 
-### FULL PARCEL UPDATE PROCESS INSTRUCTIONS
+### PARCEL UPDATE INSTRUCTIONS
 
 1. Run the _iterator.py_ script by opening _main.py_ and editing the required full path variables to point to the latest parcel update directory (`data_dir`) and your project working directory (`output_workspace`). These variables should be a path string with double backslashes (ie. `G:\\Path\\TO\\YOUR\\DATA`). Running the _iterator.py_ will call all necessary functions for the script to complete so there is no further input required.
 
