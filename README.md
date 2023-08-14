@@ -14,9 +14,9 @@ __data directory structure before processing:__
 - `YYYYMMDD` (parent folder with date of update containing all data)
     - `ZIPS` (child folder containing all state county parcels in zip file; will need to extract all to current directory before running script)
         - `ST_COUNTY` (over 3,000 folders; format is state abbreviation, `ST` + underscore + county name `COUNTY`)
-          - ST_COUNTY.gdb (geodatabase for the county)
-              - Parcels_w_Attributes_ST_COUNTY (actual polygon parcel featureclass; the only featureclass we care about)
-              - Unmatched_Propertypoints_ST_COUNTY (unmatched parcel locations; we don't use this)
+          - `ST_COUNTY.gdb` (geodatabase for the county)
+              - `Parcels_w_Attributes_ST_COUNTY` (actual polygon parcel featureclass; the only featureclass we care about)
+              - `Unmatched_Propertypoints_ST_COUNTY` (unmatched parcel locations; we don't use this)
 
 __compiler.py__
 
