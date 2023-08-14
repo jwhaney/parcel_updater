@@ -8,7 +8,15 @@ the file where input paramaters are changed, name of the `output_workspace` and 
 
 __iterator.py__
     
-the part of the script that iterates through each county folder and geodatabase provided in `data_dir`, makes a copy of the parcel polygon featureclass if it exists, runs repair geometry on the copied polygon, builds a pre-process count dictionary (`count_dict`), and builds the process dictionary (`process_dict`) used for processing in _compiler.build_. once `process_dict` is compiled, there are some print statements showing counts of gdbs and featureclasses, the dictionaries are written to file for reference, and the _compiler.build_ function is called using `process_dict` as instructions.
+the main part of this workflow which iterates through each county folder and geodatabase provided in `data_dir`, makes a copy of the parcel polygon featureclass if it exists, runs repair geometry on the copied polygon, builds a pre-process count dictionary (`count_dict`), and builds the process dictionary (`process_dict`) used for processing in _compiler.build_. once `process_dict` is compiled, there are some print statements showing counts of gdbs and featureclasses, the dictionaries are written to file for reference, and the _compiler.build_ function is called using `process_dict` as instructions.
+
+__data directory structure before processing:__
+- `YYYYMMDD` (parent folder with date of update containing all data)
+    - `ZIPS` (child folder containing all state county parcels in zip file; will need to extract all to current directory before running script)
+        - `ST_COUNTY` (over 3,000 folders; format is state abbreviation, `ST` + underscore + county name `COUNTY`)
+          - ST_COUNTY.gdb (geodatabase for the county)
+              - Parcels_w_Attributes_ST_COUNTY (actual polygon parcel featureclass; the only featureclass we care about)
+              - Unmatched_Propertypoints_ST_COUNTY (unmatched parcel locations; we don't use this)
 
 __compiler.py__
 
@@ -27,8 +35,10 @@ used for reference in _iterator.py_. this is a python dictionary to retrieve sta
 
 ### PARCEL UPDATE INSTRUCTIONS
 
-1. Run the _iterator.py_ script by opening _main.py_ and editing the required full path variables to point to the latest parcel update directory (`data_dir`) and your project working directory (`output_workspace`). These variables should be a path string with double backslashes (ie. `G:\\Path\\TO\\YOUR\\DATA`). Running the _iterator.py_ will call all necessary functions for the script to complete so there is no further input required.
+1. Before running this script workflow, you will need to go into the parent folder, select all zips (ctrl + a), right-click and use 7-Zip or a similar application to extract all zips to current directory.
+   
+2. Run the _iterator.py_ script by opening _main.py_ and editing the required full path variables to point to the latest parcel update directory (`data_dir`) and your project working directory (`output_workspace`). These variables should be a path string with double backslashes (ie. `G:\\Path\\TO\\YOUR\\DATA`). Running the _iterator.py_ will call all necessary functions for the script to complete so there is no further input required.
 
-2. It will take some time, but when completed your `output_workspace` will have a featureclass for each state, plus the District of Columbia.
+3. It will take some time, but when completed your `output_workspace` will have a featureclass for each state, plus the District of Columbia.
 
-3. Right-click _parcels.sde_ in the ArcGIS Pro catalog and choose __Import --> Featureclasses__ or you can run a script to copy each one of the state parcel featureclasses from your local working directory (`output_workspace`) to the production _parcels.sde_ geodatabase.
+4. Right-click _parcels.sde_ in the ArcGIS Pro catalog and choose __Import --> Featureclasses__ or you can run a script to copy each one of the state parcel featureclasses from your local working directory (`output_workspace`) to the production _parcels.sde_ geodatabase.
