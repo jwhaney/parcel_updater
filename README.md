@@ -12,6 +12,7 @@ the main part of this workflow which iterates through each county folder and geo
 
 __data directory structure before processing:__
 - `YYYYMMDD` (parent folder with date of update containing all data)
+    - `DMP_DELIVERY_YYYYMMDD.xlsx` (provided metadata; provided county of parcel polygons and unmatched property points)
     - `ZIPS` (child folder containing all state county parcels in zip file; will need to extract all to current directory before running script)
         - `ST_COUNTY` (over 3,000 folders; format is state abbreviation, `ST` + underscore + county name `COUNTY`)
           - `ST_COUNTY.gdb` (geodatabase for the county)
