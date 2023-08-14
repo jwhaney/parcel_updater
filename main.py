@@ -1,5 +1,4 @@
 from iterator import floop
-from renamer import rename
 
 # setup variables
 data_dir = 'DRIVE:\\PARCEL\\DATA\\LIVES\\HERE\\'
